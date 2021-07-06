@@ -11,5 +11,10 @@ class ProdutoController {
        
        $daoProduto = new daoProduto();
        return $daoProduto->inserir($produto);
-    }
+ 
+       }
+       public function listarProdutos(){
+           
+       }
+        
 }

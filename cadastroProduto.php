@@ -13,6 +13,7 @@
             }
         </style>
     </head>
+    
     <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
@@ -93,6 +94,30 @@
                                 </div>
                         </form>
                     </div>
+                            <div class="row" style="margin-top:30px">
+                                <div class="table table_striped table-responsive" >
+                                    <thead class="table-dark" >
+                                        <th>Código</th>
+                                        <th>Nome</th>
+                                        <th>Compra (R$)</th>
+                                        <th>Venda (R$)</th>
+                                        <th>Estoque</th>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        $pcTable = new ProdutoController();
+                                        $lp = $pcTable->listarProdutos();
+                                        foreach ($listaProdutos as $lp){
+                                            print_r("<tr><td>".$lp['id']."</td>");
+                                            print_r("<tr><td>".$lp['nome']."</td>");
+                                            print_r("<tr><td>".$lp['vlrCompra']."</td>");
+                                            print_r("<tr><td>".$lp['vlrVenda']."</td>");
+                                            print_r("<tr><td>".$lp['qtdEstoque']."</td>");                                     
+                                        }
+ 
+                                        ?>
+                                    </tbody>
+                            </div>
                 </div>            
                 <script src="js/bootstrap.js"></script>
                 <script src="js/bootstrap.min.js"></script>

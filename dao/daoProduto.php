@@ -19,7 +19,16 @@ class daoProduto {
                         "Erro na conexão com o banco de dados</p>";
         }
         mysqli_close($conn->conectadb());
-        
+        return $msg;      
       
+    }
+    public function listarProdutosDAO(){
+        $conn = new Conecta();
+        if($conn->conectadb()){
+            $sql = "select * from produto";
+           $query = mysqli_query($conn->conectadb(), $sql);
+           $lista = mysqli_fetch_array($query);
+           return $lista;
+        }
     }
 }

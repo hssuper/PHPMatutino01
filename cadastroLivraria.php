@@ -1,8 +1,11 @@
+<?php
+include_once 'controller/ProdutoController.php';
+?>
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Produto</title>
+        <title>Livro</title>
         <link rel="stylesheet" href="css/bootstrap.css">
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <style>
@@ -52,20 +55,20 @@
 
                     <div class="card-header bg-light text-center border"
                          style="padding-bottom: 15px; padding-top: 15px;">
-                        Cadastro de Produto
+                        Cadastro de Livro
                     </div>
                     <?php
                     //envio dos dados para o BD
                     if (isset($_POST['cadastrarProduto'])) {
-                        include_once 'controller/ProdutoController.php';
-                        $nomeProduto = $_POST['nomeProduto'];
-                        $vlrCompra = $_POST['vlrCompra'];
-                        $vlrVenda = $_POST['vlrVenda'];
+                        
+                        $titulo = $_POST['titulo'];
+                        $autor = $_POST['autor'];
+                        $editora = $_POST['editora'];
                         $qtdEstoque = $_POST['qtdEstoque'];
                         
 
                         $pc = new ProdutoController();
-                        echo "<p>" . $pc->inserirProduto($nomeProduto, $vlrCompra, $vlrVenda, $qtdEstoque) . "</p>";
+                        echo "<p>" . $pc->inserirProduto($titulo, $autor, $editora, $qtdEstoque) . "</p>";
                     }
                     ?>
                     <div class="card-body border">
@@ -73,15 +76,15 @@
                             <div class="row">
                                 <div class="col-md-6 offset-md-3">
                                     <label>Código: </label> <br> 
-                                    <label>Produto</label>  
+                                    <label>Titulo</label>  
                                     <input class="form-control" type="text" 
-                                           name="nomeProduto">
-                                    <label>Valor de Compra</label>  
+                                           name="titulo">
+                                    <label>Autor</label>  
                                     <input class="form-control" type="text" 
-                                           name="vlrCompra">  
-                                    <label>Valor de Venda</label>  
+                                           name="autor">  
+                                    <label>Editora</label>  
                                     <input class="form-control" type="text" 
-                                           name="vlrVenda"> 
+                                           name="editora"> 
                                     <label>Quantidade de Estoque</label>  
                                     <input class="form-control" type="number" 
                                            name="qtdEstoque">                    
@@ -93,6 +96,7 @@
                                 </div>
                         </form>
                     </div>
+                            
                 </div>            
                 <script src="js/bootstrap.js"></script>
                 <script src="js/bootstrap.min.js"></script>
