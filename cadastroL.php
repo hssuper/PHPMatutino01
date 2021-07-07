@@ -133,25 +133,20 @@
                                     <img src="" width="32"></button></td>
                         </tr>
                         <!-- janela modal Confirm. de Leitura -->
-                    <div class="modal fade modal_a<?php echo $a; ?>" role="dialog" tabindex="-1" aria-hidden="true">
+                   <!-- Modal -->
+                   <div class="modal fade" id="exampleModal<?php echo $a;?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal">
-                                        <span aria-hidden="true">&times;</span>
-                                        <span class="sr-only">Confirmação de leitura do aviso</span>
-                                    </button>
-                                    <h4 class="modal-title">Confirmar Leitura</h4>
+                                    <h5 class="modal-title" id="exampleModalLabel">deseja excluir</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <form name="confirmaAviso" method="post" action="" >
-                                        <div class="form-group">
-
-                                            Comandos de confirmação
-                                            <div class="form-group"><br>
-                                                <input type="submit" name="confirmar" value="&nbsp; Confirmo a leitura &nbsp;" class="btn btn-primary btn-lg" />
-                                                <input type="reset" value="&nbsp;&nbsp; Cancelar &nbsp;&nbsp;" class="btn btn-danger btn-lg" data-dismiss="modal"/>
-                                                </form>
+                                    Contexto....<?php echo $lp->getIdProduto(); ?>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary">Sim</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
                                             </div>
                                         </div>
                                 </div>
