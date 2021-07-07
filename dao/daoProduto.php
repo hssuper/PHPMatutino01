@@ -28,7 +28,18 @@ class daoProduto {
             $sql = "select * from produto";
            $query = mysqli_query($conn->conectadb(), $sql);
            $lista = mysqli_fetch_array($query);
-           return $lista;
+           $result = mysqli_fetch_array($query);
+           $lista = array();
+           $a=0;
+          do{
+              
+         
+           $produto = new Produto();
+           $produto->setIdProduto($result['id']);
+           
+           $lista[$a] = $produto;
+           $a++;
+           }while ($result = mysqli_fetch_array($query));
         }
     }
 }

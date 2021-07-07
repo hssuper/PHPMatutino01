@@ -13,7 +13,7 @@
             }
         </style>
     </head>
-    
+
     <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
@@ -53,20 +53,21 @@
 
                     <div class="card-header bg-light text-center border"
                          style="padding-bottom: 15px; padding-top: 15px;">
-                        Cadastro de Produto
+                        Cadastro de Livro
                     </div>
+
                     <?php
                     //envio dos dados para o BD
-                    if (isset($_POST['cadastrarProduto'])) {
-                        include_once 'controller/ProdutoController.php';
-                        $nomeProduto = $_POST['nomeProduto'];
-                        $vlrCompra = $_POST['vlrCompra'];
-                        $vlrVenda = $_POST['vlrVenda'];
+                    if (isset($_POST['cadastrarLivro'])) {
+                        include_once 'controller/LivroController.php';
+                        $titulo = $_POST['titulo'];
+                        $autor = $_POST['autor'];
+                        $editora = $_POST['editora'];
                         $qtdEstoque = $_POST['qtdEstoque'];
-                        
+
 
                         $pc = new ProdutoController();
-                        echo "<p>" . $pc->inserirProduto($nomeProduto, $vlrCompra, $vlrVenda, $qtdEstoque) . "</p>";
+                        echo "<p>" . $pc->inserirProduto($titulo, $autor, $editora, $qtdEstoque) . "</p>";
                     }
                     ?>
                     <div class="card-body border">
@@ -74,13 +75,13 @@
                             <div class="row">
                                 <div class="col-md-6 offset-md-3">
                                     <label>Código: </label> <br> 
-                                    <label>Produto</label>  
+                                    <label>titulo</label>  
                                     <input class="form-control" type="text" 
                                            name="nomeProduto">
-                                    <label>Valor de Compra</label>  
+                                    <label>autor</label>  
                                     <input class="form-control" type="text" 
                                            name="vlrCompra">  
-                                    <label>Valor de Venda</label>  
+                                    <label>editora</label>  
                                     <input class="form-control" type="text" 
                                            name="vlrVenda"> 
                                     <label>Quantidade de Estoque</label>  
@@ -92,47 +93,80 @@
                                     <input type="reset" 
                                            class="btn btn-light btInput" value="Limpar">
                                 </div>
+                            </div>
                         </form>
                     </div>
-                            <div class="row" style="margin-top:30px">
-                                <div class="table table_striped table-responsive" >
-                                    <thead class="table-dark" >
-                                        <th>Código</th>
-                                        <th>Nome</th>
-                                        <th>Compra (R$)</th>
-                                        <th>Venda (R$)</th>
-                                        <th>Estoque</th>
-                                        <th>Ações</th>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        $pcTable = new ProdutoController();
-                                        $listaProdutos = $pcTable->listarProdutos();
-                                        foreach ($listaProdutos as $lp){
-                                            ?>
-                                        <tr>
-                                            <td> <?php print_r($lp->getIdProduto())?>
-                                            
-                                            
-                                            
-                                        </tr>
-                                            
-                                            
-                                        
-                                            print_r("<tr><td>".$lp['id']."</td>");
-                                            print_r("<tr><td>".$lp['nome']."</td>");
-                                            print_r("<tr><td>".$lp['vlrCompra']."</td>");
-                                            print_r("<tr><td>".$lp['vlrVenda']."</td>");
-                                            print_r("<tr><td>".$lp['qtdEstoque']."</td>");                                     
-                                        }while ($lp = $pcTable-> listarProdutos());
-                                        <?php
-                                        }
-                                      ?>
-                                    </tbody>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="margin-top:30px">
+            <div class="table table_striped table-responsive">
+                <thead class="table-dark" >
+                   <tr><th>Código</th>
+                        <th>Titulo</th>
+                        <th>Autor</th>
+                        <th>Editora</th>
+                        <th>Estoque</th>
+                        <th>Ações</th></tr>
+                </thead>
+                <tbody>
+                    <?php
+                    $livroTable = new LivroController();
+                    $listaLivros = $livroTable->listarLivros();
+                    foreach ($listaLivros as $l) {
+                        ?>
+                        <tr>
+                            <td><?php print_r($l->getIdLivro()); ?></td>
+                                <td><?php print_r($l->getTitulo()); ?></td>
+                                <td><?php print_r($l->getAutor()); ?></td>
+                                <td><?php print_r($l->getEditora()); ?></td>
+                                <td><?php print_r($l->getQtdEstoque()); ?></td>
+                                <td><a class="btn btn-light" 
+                                       href="#?id=<?php echo $l->getIdLivro(); ?>">
+                                        <img src="" width="32"></a>
+                                    <button type="button" 
+                                            class="btn btn-light" data-toggle="modal" 
+                                            data-target=".modal_a<?php echo $a; ?>">
+                                        <img src="" width="32"></button></td>
+                        </tr>
+               <!-- janela modal Confirm. de Leitura -->
+            <div class="modal fade modal_a<?php echo $a;?>" role="dialog" tabindex="-1" aria-hidden="true">
+            	<div class="modal-dialog">
+                	<div class="modal-content">
+                    	<div class="modal-header">
+                        	<button type="button" class="close" data-dismiss="modal">
+                            	<span aria-hidden="true">&times;</span>
+                                <span class="sr-only">Confirmação de leitura do aviso</span>
+                            </button>
+                        	<h4 class="modal-title">Confirmar Leitura</h4>
+                        </div>
+                        <div class="modal-body">
+                        	<form name="confirmaAviso" method="post" action="" >
+                            <div class="form-group">
+                        
+                                Comandos de confirmação
+                                <div class="form-group"><br>
+                                    <input type="submit" name="confirmar" value="&nbsp; Confirmo a leitura &nbsp;" class="btn btn-primary btn-lg" />
+                                    <input type="reset" value="&nbsp;&nbsp; Cancelar &nbsp;&nbsp;" class="btn btn-danger btn-lg" data-dismiss="modal"/>
+                                     </form>
+	                            </div>
                             </div>
-                </div>            
-                <script src="js/bootstrap.js"></script>
-                <script src="js/bootstrap.min.js"></script>
-                </body>
-                </html>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+        <!-- // janela modal Confirm. de Leitura -->
+                        <?php
+                    }
+                
+                ?>
+                </tbody>
+            </div>
+        </div>            
+        <script src="js/bootstrap.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+    </body>
+</html>
+
+
 
