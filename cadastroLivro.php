@@ -1,11 +1,8 @@
-<?php
-include_once 'controller/ProdutoController.php';
-?>
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Login</title>
+        <title>Produto</title>
         <link rel="stylesheet" href="css/bootstrap.css">
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <style>
@@ -16,6 +13,7 @@ include_once 'controller/ProdutoController.php';
             }
         </style>
     </head>
+
     <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
@@ -55,110 +53,120 @@ include_once 'controller/ProdutoController.php';
 
                     <div class="card-header bg-light text-center border"
                          style="padding-bottom: 15px; padding-top: 15px;">
-                        Cadastro de Produto
+                        Cadastro de Livro
                     </div>
-                    <div class="card-body border">
-                        <?php
-                        //envio dos dados para o BD
-                        if (isset($_POST['cadastrarProduto'])) {
-                            $nomeProduto = $_POST['nomeProduto'];
-                            $vlrCompra = $_POST['vlrCompra'];
-                            $vlrVenda = $_POST['vlrVenda'];
-                            $qtdEstoque = $_POST['qtdEstoque'];
 
-                            $pc = new ProdutoController();
-                            echo $pc->inserirProduto($nomeProduto, $vlrCompra, $vlrVenda, $qtdEstoque);
-                            $_POST['cadastrarProduto'] = null;
-                        }
-                        ?>
+                    <?php
+                    //envio dos dados para o BD
+                    if (isset($_POST['cadastrarLivro'])) {
+                        include_once 'controller/LivroController.php';
+                        $titulo = $_POST['titulo'];
+                        $autor = $_POST['autor'];
+                        $editora = $_POST['editora'];
+                        $qtdEstoque = $_POST['qtdEstoque'];
+
+
+                        $pc = new ProdutoController();
+                        echo "<p>" . $pc->inserirProduto($titulo, $autor, $editora, $qtdEstoque) . "</p>";
+                    }
+                    ?>
+                    <div class="card-body border">
                         <form method="post" action="">
                             <div class="row">
                                 <div class="col-md-6 offset-md-3">
                                     <label>Código: </label> <br> 
-                                    <label>Produto</label>  
+                                    <label>titulo</label>  
                                     <input class="form-control" type="text" 
                                            name="nomeProduto">
-                                    <label>Valor de Compra</label>  
+                                    <label>autor</label>  
                                     <input class="form-control" type="text" 
                                            name="vlrCompra">  
-                                    <label>Valor de Venda</label>  
+                                    <label>editora</label>  
                                     <input class="form-control" type="text" 
                                            name="vlrVenda"> 
-                                    <label>Qtde em Estoque</label>  
+                                    <label>Quantidade de Estoque</label>  
                                     <input class="form-control" type="number" 
-                                           name="qtdEstoque">
+                                           name="qtdEstoque">                    
                                     <input type="submit" name="cadastrarProduto"
                                            class="btn btn-success btInput" value="Enviar">
                                     &nbsp;&nbsp;
                                     <input type="reset" 
                                            class="btn btn-light btInput" value="Limpar">
                                 </div>
+                            </div>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row" style="margin-top: 30px;">
-            <table class="table table-striped table-responsive">
-                <thead class="table-dark">
-                    <tr><th>Código</th>
-                        <th>Nome</th>
-                        <th>Compra (R$)</th>
-                        <th>Venda (R$)</th>
+        <div class="row" style="margin-top:30px">
+            <div class="table table_striped table-responsive">
+                <thead class="table-dark" >
+                   <tr><th>Código</th>
+                        <th>Titulo</th>
+                        <th>Autor</th>
+                        <th>Editora</th>
                         <th>Estoque</th>
                         <th>Ações</th></tr>
                 </thead>
                 <tbody>
                     <?php
-                    $pcTable = new ProdutoController();
-                    $listaProdutos = $pcTable->listarProdutos();
-                    $a = 0;
-                    if ($listaProdutos != null) {
-                        foreach ($listaProdutos as $lp) {
-                            $a++;
-                            ?>
-                            <tr>
-                                <td><?php print_r($lp->getIdProduto()); ?></td>
-                                <td><?php print_r($lp->getNomeProduto()); ?></td>
-                                <td><?php print_r($lp->getVlrCompra()); ?></td>
-                                <td><?php print_r($lp->getVlrVenda()); ?></td>
-                                <td><?php print_r($lp->getQtdEstoque()); ?></td>
+                    $lc = new LivroController();
+                    $lL = $lc->listarLivros();
+                    foreach ($listaLivros as $lc) {
+                        ?>
+                        <tr>
+                            <td><?php print_r($lc->getIdLivro()); ?></td>
+                                <td><?php print_r($lc->getTitulo()); ?></td>
+                                <td><?php print_r($lc->getAutor()); ?></td>
+                                <td><?php print_r($lc->getEditora()); ?></td>
+                                <td><?php print_r($lc->getQtdEstoque()); ?></td>
                                 <td><a class="btn btn-light" 
-                                       href="#?id=<?php echo $lp->getIdProduto(); ?>">
-                                        <img src="img/edit.png" width="32"></a>
+                                       href="#?id=<?php echo $l->getIdLivro(); ?>">
+                                        <img src="" width="32"></a>
                                     <button type="button" 
-                                            class="btn btn-light" data-bs-toggle="modal" 
-                                            data-bs-target="#exampleModal<?php echo $a;?>">
-                                        <img src="img/delete.png" width="32"></button></td>
-                            </tr>
-                    <!-- Modal -->
-                    <div class="modal fade" id="exampleModal<?php echo $a;?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    Contexto....<?php echo $lp->getIdProduto(); ?>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary">Sim</button>
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
-                                </div>
+                                            class="btn btn-light" data-toggle="modal" 
+                                            data-target=".modal_a<?php echo $a; ?>">
+                                        <img src="" width="32"></button></td>
+                        </tr>
+               <!-- janela modal Confirm. de Leitura -->
+            <div class="modal fade modal_a<?php echo $a;?>" role="dialog" tabindex="-1" aria-hidden="true">
+            	<div class="modal-dialog">
+                	<div class="modal-content">
+                    	<div class="modal-header">
+                        	<button type="button" class="close" data-dismiss="modal">
+                            	<span aria-hidden="true">&times;</span>
+                                <span class="sr-only">Confirmação de leitura do aviso</span>
+                            </button>
+                        	<h4 class="modal-title">Confirmar Leitura</h4>
+                        </div>
+                        <div class="modal-body">
+                        	<form name="confirmaAviso" method="post" action="" >
+                            <div class="form-group">
+                        
+                                Comandos de confirmação
+                                <div class="form-group"><br>
+                                    <input type="submit" name="confirmar" value="&nbsp; Confirmo a leitura &nbsp;" class="btn btn-primary btn-lg" />
+                                    <input type="reset" value="&nbsp;&nbsp; Cancelar &nbsp;&nbsp;" class="btn btn-danger btn-lg" data-dismiss="modal"/>
+                                     </form>
+	                            </div>
                             </div>
                         </div>
                     </div>
+                </div>
+            </div> 
+        <!-- // janela modal Confirm. de Leitura -->
                         <?php
                     }
-                }
+                
                 ?>
                 </tbody>
-            </table>
-        </div>     
-    </div>
-    <script src="js/bootstrap.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-</body>
+            </div>
+        </div>            
+        <script src="js/bootstrap.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+    </body>
 </html>
+
+
 
