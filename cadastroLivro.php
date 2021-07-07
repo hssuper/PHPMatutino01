@@ -111,21 +111,21 @@
                 </thead>
                 <tbody>
                     <?php
-                    $livroTable = new LivroController();
-                    $listaLivros = $livroTable->listarLivros();
-                    foreach ($listaLivros as $l) {
+                    $lc = new LivroController();
+                    $lL = $lc->listarLivros();
+                    foreach ($listaLivros as $lc) {
                         ?>
                         <tr>
-                            <td><?php print_r($l->getIdLivro()); ?></td>
-                                <td><?php print_r($l->getTitulo()); ?></td>
-                                <td><?php print_r($l->getAutor()); ?></td>
-                                <td><?php print_r($l->getEditora()); ?></td>
-                                <td><?php print_r($l->getQtdEstoque()); ?></td>
+                            <td><?php print_r($lc->getIdLivro()); ?></td>
+                                <td><?php print_r($lc->getTitulo()); ?></td>
+                                <td><?php print_r($lc->getAutor()); ?></td>
+                                <td><?php print_r($lc->getEditora()); ?></td>
+                                <td><?php print_r($lc->getQtdEstoque()); ?></td>
                                 <td><a class="btn btn-light" 
                                        href="#?id=<?php echo $l->getIdLivro(); ?>">
                                         <img src="" width="32"></a>
                                     <button type="button" 
-                                            class="btn btn-light" data-bs-toggle="modal" 
+                                            class="btn btn-light" data-toggle="modal" 
                                             data-target=".modal_a<?php echo $a; ?>">
                                         <img src="" width="32"></button></td>
                         </tr>
