@@ -67,7 +67,7 @@
 
 
                         $l = new LivroController();
-                        echo "<p>" . $l->inseriLivro($titulo, $autor, $editora, $qtdEstoque) . "</p>";
+                        echo "<p>" . $l->inserirLivro($titulo, $autor, $editora, $qtdEstoque) . "</p>";
                     }
                     ?>
                     <div class="card-body border">
