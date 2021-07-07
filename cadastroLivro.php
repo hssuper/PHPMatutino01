@@ -125,7 +125,7 @@
                                        href="#?id=<?php echo $l->getIdLivro(); ?>">
                                         <img src="" width="32"></a>
                                     <button type="button" 
-                                            class="btn btn-light" data-toggle="modal" 
+                                            class="btn btn-light" data-bs-toggle="modal" 
                                             data-target=".modal_a<?php echo $a; ?>">
                                         <img src="" width="32"></button></td>
                         </tr>
