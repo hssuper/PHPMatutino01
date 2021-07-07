@@ -66,8 +66,8 @@
                         $qtdEstoque = $_POST['qtdEstoque'];
 
 
-                        $pc = new ProdutoController();
-                        echo "<p>" . $pc->inserirProduto($titulo, $autor, $editora, $qtdEstoque) . "</p>";
+                        $l = new LivroController();
+                        echo "<p>" . $l->inseriLivro($titulo, $autor, $editora, $qtdEstoque) . "</p>";
                     }
                     ?>
                     <div class="card-body border">
@@ -102,7 +102,7 @@
         <div class="row" style="margin-top:30px">
             <div class="table table_striped table-responsive">
                 <thead class="table-dark" >
-                   <tr><th>Código</th>
+                    <tr><th>Código</th>
                         <th>Titulo</th>
                         <th>Autor</th>
                         <th>Editora</th>
@@ -111,54 +111,57 @@
                 </thead>
                 <tbody>
                     <?php
-                    $lc = new LivroController();
-                    $lL = $lc->listarLivros();
-                    foreach ($listaLivros as $lc) {
-                        ?>
+                    $pcTable = new LivroController();
+                    $listaLivros = $pcTable->listarLivros();
+                    $a = 0;
+                    if ($listaLivros != null) {
+                        foreach ($listaLivros as $l) {
+                            $a++;
+                            ?>
                         <tr>
-                            <td><?php print_r($lc->getIdLivro()); ?></td>
-                                <td><?php print_r($lc->getTitulo()); ?></td>
-                                <td><?php print_r($lc->getAutor()); ?></td>
-                                <td><?php print_r($lc->getEditora()); ?></td>
-                                <td><?php print_r($lc->getQtdEstoque()); ?></td>
-                                <td><a class="btn btn-light" 
-                                       href="#?id=<?php echo $l->getIdLivro(); ?>">
-                                        <img src="" width="32"></a>
-                                    <button type="button" 
-                                            class="btn btn-light" data-toggle="modal" 
-                                            data-target=".modal_a<?php echo $a; ?>">
-                                        <img src="" width="32"></button></td>
+                            <td><?php print_r($l->getIdLivro()); ?></td>
+                            <td><?php print_r($l->getTitulo()); ?></td>
+                            <td><?php print_r($l->getAutor()); ?></td>
+                            <td><?php print_r($l->getEditora()); ?></td>
+                            <td><?php print_r($l->getQtdEstoque()); ?></td>
+                            <td><a class="btn btn-light" 
+                                   href="#?id=<?php echo $l->getIdLivro(); ?>">
+                                    <img src="" width="32"></a>
+                                <button type="button" 
+                                        class="btn btn-light" data-toggle="modal" 
+                                        data-target=".modal_a<?php echo $a; ?>">
+                                    <img src="" width="32"></button></td>
                         </tr>
-               <!-- janela modal Confirm. de Leitura -->
-            <div class="modal fade modal_a<?php echo $a;?>" role="dialog" tabindex="-1" aria-hidden="true">
-            	<div class="modal-dialog">
-                	<div class="modal-content">
-                    	<div class="modal-header">
-                        	<button type="button" class="close" data-dismiss="modal">
-                            	<span aria-hidden="true">&times;</span>
-                                <span class="sr-only">Confirmação de leitura do aviso</span>
-                            </button>
-                        	<h4 class="modal-title">Confirmar Leitura</h4>
-                        </div>
-                        <div class="modal-body">
-                        	<form name="confirmaAviso" method="post" action="" >
-                            <div class="form-group">
-                        
-                                Comandos de confirmação
-                                <div class="form-group"><br>
-                                    <input type="submit" name="confirmar" value="&nbsp; Confirmo a leitura &nbsp;" class="btn btn-primary btn-lg" />
-                                    <input type="reset" value="&nbsp;&nbsp; Cancelar &nbsp;&nbsp;" class="btn btn-danger btn-lg" data-dismiss="modal"/>
-                                     </form>
-	                            </div>
+                        <!-- janela modal Confirm. de Leitura -->
+                    <div class="modal fade modal_a<?php echo $a; ?>" role="dialog" tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">
+                                        <span aria-hidden="true">&times;</span>
+                                        <span class="sr-only">Confirmação de leitura do aviso</span>
+                                    </button>
+                                    <h4 class="modal-title">Confirmar Leitura</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <form name="confirmaAviso" method="post" action="" >
+                                        <div class="form-group">
+
+                                            Comandos de confirmação
+                                            <div class="form-group"><br>
+                                                <input type="submit" name="confirmar" value="&nbsp; Confirmo a leitura &nbsp;" class="btn btn-primary btn-lg" />
+                                                <input type="reset" value="&nbsp;&nbsp; Cancelar &nbsp;&nbsp;" class="btn btn-danger btn-lg" data-dismiss="modal"/>
+                                                </form>
+                                            </div>
+                                        </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div> 
-        <!-- // janela modal Confirm. de Leitura -->
-                        <?php
+                    </div> 
+                    <!-- // janela modal Confirm. de Leitura -->
+                    <?php
+                }
                     }
-                
                 ?>
                 </tbody>
             </div>
