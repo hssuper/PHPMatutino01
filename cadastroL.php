@@ -83,7 +83,7 @@
                                 <input class="form-control" type="text" name="vlrVenda">
                                 <label>Quantidade de Estoque</label>
                                 <input class="form-control" type="number" name="qtdEstoque">
-                                <input type="submit" name="cadastrarProduto" class="btn btn-success btInput" value="Enviar">
+                                <input type="submit" name="cadastrarLivro" class="btn btn-success btInput" value="Enviar">
                                 &nbsp;&nbsp;
                                 <input type="reset" class="btn btn-light btInput" value="Limpar">
                             </div>
