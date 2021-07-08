@@ -147,22 +147,7 @@ include_once 'controller/ProdutoController.php';
                                             
 
                                             <button type="submit" name="botaoConfirma" class="btn btn-primary">Sim</button>
-                                            <?php
-                                            $codigo = $_GET[" $lp->getIdProduto();"];
-                                            if (isset($_POST["button"])) {
-
-                                                if (isset($_POST["botaoConfirmar"])) {
-                                                    $comandoExcluir = "DELETE FROM tbTarefa WHERE idTarefa =" . $codigo;
-                                                    $resultado = $c->criarConsulta($comandoExcluir);
-
-                                                    if ($resultado) {
-                                                        echo "Removido com sucesso";
-                                                    } else {
-                                                        echo "Não foi removido";
-                                                    }
-                                                }
-                                            }
-                                            ?>
+                                            
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
                                         </div>
                                     </div>
