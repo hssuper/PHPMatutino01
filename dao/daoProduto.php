@@ -1,38 +1,39 @@
 <?php
+
 include_once 'C:/xampp/htdocs/PHPMatutino01/bd/Conecta.php';
 include_once 'C:/xampp/htdocs/PHPMatutino01/model/Produto.php';
 
 class DaoProduto {
-    
-    public function inserir(Produto $produto){
+
+    public function inserir(Produto $produto) {
         $conn = new Conecta();
-        if($conn->conectadb()){
+        if ($conn->conectadb()) {
             $nomeProduto = $produto->getNomeProduto();
             $vlrCompra = $produto->getVlrCompra();
             $vlrVenda = $produto->getVlrVenda();
             $qtdEstoque = $produto->getQtdEstoque();
             $sql = "insert into produto values (null, '$nomeProduto',"
                     . "'$vlrCompra', '$vlrVenda', '$qtdEstoque')";
-            $resp = mysqli_query($conn->conectadb(), $sql) or 
+            $resp = mysqli_query($conn->conectadb(), $sql) or
                     die($conn->conectadb());
-            if($resp){
+            if ($resp) {
                 $msg = "<p style='color: green;'>"
                         . "Dados Cadastrados com sucesso</p>";
-            }else{
+            } else {
                 $msg = $resp;
             }
-        }else{
+        } else {
             $msg = "<p style='color: red;'>"
-                        . "Erro na conexão com o banco de dados.</p>";
+                    . "Erro na conexão com o banco de dados.</p>";
         }
         mysqli_close($conn->conectadb());
         return $msg;
     }
-    
+
     //método para carregar lista de produtos do banco de dados
-    public function listarProdutosDAO(){
+    public function listarProdutosDAO() {
         $conn = new Conecta();
-        if($conn->conectadb()){
+        if ($conn->conectadb()) {
             $sql = "select * from produto";
             $query = mysqli_query($conn->conectadb(), $sql);
             $result = mysqli_fetch_array($query);
@@ -54,4 +55,20 @@ class DaoProduto {
             return $lista;
         }
     }
+
+    public function excluirProdutoDAO($id) {
+        $conn = new Conecta();
+        $conecta = $conn->conectadb();
+        if ($conecta) {
+            $sql = "delete from produto where id ='$id'";
+            mysqli_query($conecta, $sql);
+            header("location: ../PHPMatutino01.php");
+            mysqli_close($conecta);
+            exit;
+        } else {
+            echo "<script> alert ('Banco Inoperante')</script>";
+            header("location: ../PHPMatutino01.php ");
+        }
+    }
+
 }
