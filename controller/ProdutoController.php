@@ -28,6 +28,7 @@ class ProdutoController {
     //metodo para edtar produto
     public function editarProduto($id) {
         $daoProduto = new DaoProduto();
-        $daoProduto->editarProdutoDAO($id)
+        return $daoProduto->editarProdutoDAO($id);;
+        
     }
 }
