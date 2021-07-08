@@ -125,7 +125,7 @@ include_once 'controller/ProdutoController.php';
                                     <td><?php print_r($lp->getVlrVenda()); ?></td>
                                     <td><?php print_r($lp->getQtdEstoque()); ?></td>
                                     <td><a class="btn btn-light" 
-                                           href="#?id=<?php echo $lp->getIdProduto(); ?>">
+                                           href="editaProduto#?id=<?php echo $lp->getIdProduto(); ?>">
                                             <img src="img/edita.png" width="32"></a>
                                         <button type="button" 
                                                 class="btn btn-light" data-bs-toggle="modal" 
