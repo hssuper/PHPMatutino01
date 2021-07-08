@@ -126,7 +126,7 @@ include_once 'controller/ProdutoController.php';
                                     <td><?php print_r($lp->getQtdEstoque()); ?></td>
                                     <td><a class="btn btn-light" 
                                            href="controller/editaProduto.php?id=<?php echo $lp->getIdProduto(); ?>">
-                                            <img src="img/edita.png" width="32"></a>
+                                            <img src="img/edit.png" width="32"></a>
                                         <button type="button" 
                                                 class="btn btn-light" data-bs-toggle="modal" 
                                                 data-bs-target="#exampleModal<?php echo $a; ?>">
