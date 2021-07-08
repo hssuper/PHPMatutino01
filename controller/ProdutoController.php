@@ -21,4 +21,8 @@ class ProdutoController {
         $daoProduto = new DaoProduto();
         return $daoProduto->listarProdutosDAO();
     }
+    public function excluirProduto($id){
+        $daoProduto =new DaoProduto();
+        $daoProduto->excluirProduto($id);
+    }
 }
