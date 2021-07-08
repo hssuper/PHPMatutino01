@@ -52,7 +52,7 @@
             <div class="row" style="margin-top: 30px;">
                 <div class="col-8 offset-2">
 
-                    <div class="card-header bg-light text-center border" style="padding-bottom: 15px; padding-top: 15px;">
+                    <div class="card-header bg-dark text-center border" style="padding-bottom: 15px; padding-top: 15px;">
                         Cadastro de Livro
                     </div>
 

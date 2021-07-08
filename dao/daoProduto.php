@@ -62,12 +62,13 @@ class DaoProduto {
         if ($conecta) {
             $sql = "delete from produto where id ='$id'";
             mysqli_query($conecta, $sql);
-            header("location: ../PHPMatutino01.php");
+            header("Location: ../PHPMatutino01/cadastroProduto.php");
             mysqli_close($conecta);
             exit;
         } else {
             echo "<script> alert ('Banco Inoperante')</script>";
-            header("location: ../PHPMatutino01.php ");
+            echo " <Meta HTTP-EQUIV='REFRESH' CONTENT=\"0;
+                URL='../PHPMatutino01/cadastroProduto.php'\">";
         }
     }
 
