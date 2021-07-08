@@ -120,7 +120,7 @@
                                 <td><?php print_r($lc->getAutor()); ?></td>
                                 <td><?php print_r($lc->getEditora()); ?></td>
                                 <td><?php print_r($lc->getQtdEstoque()); ?></td>
-                                <td><a class="btn btn-light" href="#?id=<?php echo $l->getIdLivro(); ?>">
+                                <td><a class="btn btn-light" href="#?id=<?php echo $lc->getIdLivro(); ?>">
                                         <img src="" width="32"></a>
                                     <button type="button" class="btn btn-light" data-toggle="modal" data-target=".modal_a<?php echo $a; ?>">
                                         <img src="" width="32"></button>
