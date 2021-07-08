@@ -73,7 +73,7 @@
                     <div class="card-body border">
                         <form method="post" action="">
                             <div class="row">
-                                <div class="col-md-6 offset-md-3">
+                                <div class="col-md-8 offset-md-3">
                                     <label>Código: </label> <br>
                                     <label>titulo</label>
                                     <input class="form-control" type="text" name="titulo">
@@ -128,33 +128,39 @@
                             </tr>
                             <!-- janela modal Confirm. de Leitura -->
                             <!-- Modal -->
-                       <div class="modal fade" id="exampleModal<?php echo $a;?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">deseja excluir</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    Contexto....<?php echo $lp->getIdProduto(); ?>
+                        <div class="modal fade" id="exampleModal<?php echo $a; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">deseja excluir</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form method="get" action="excluirProduto.php">
+                                            <label><strong>Deseja excluir o Produto
+                                                    <?php echo $lp->getIdProduto(); ?></strong></label>
+                                            Contexto....<?php echo $lp->getIdProduto(); ?>
+                                    </div>
+                                    Contexto....<?php echo $lp->getIdLivro(); ?>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-primary">Sim</button>
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
                                 </div>
+                                </form> 
                             </div>
                         </div>
                     </div>
-                        <!-- // janela modal Confirm. de Leitura -->
-                        <?php
-                    }
+                    <!-- // janela modal Confirm. de Leitura -->
+                    <?php
                 }
-                ?>
-                </tbody>
-            </div>
-        </div>
-        <script src="js/bootstrap.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-    </body>
+            }
+            ?>
+        </tbody>
+    </div>
+</div>
+<script src="js/bootstrap.js"></script>
+<script src="js/bootstrap.min.js"></script>
+</body>
 
 </html>
