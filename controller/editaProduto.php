@@ -1,6 +1,9 @@
 <?php
 
-include_once 'C:/xampp/htdocs/PHPMatutino01/dao/DaoProduto.php';
-include_once 'C:/xampp/htdocs/PHPMatutino01/model/Produto.php';
+include_once 'ProdutoController.php';
 $id = $_REQUEST['id'];
 
+$pc = new ProdutoController();
+$pc->pesquisarProdutoId($id);
+header("Location: ../cadastroProduto.php");
+exit;

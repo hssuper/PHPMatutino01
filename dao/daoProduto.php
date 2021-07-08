@@ -71,5 +71,35 @@ class DaoProduto {
                 URL='../PHPMatutino01/cadastroProduto.php'\">";
         }
     }
-
+//metodo para pesquisar de Produto por Id
+    public function pesquisarProdutoId($id){
+         $conn = new Conecta();
+        $conecta = $conn->conectadb();
+        if ($conecta) {
+            $sql = "select *from produto where id ='$id'";
+           $result =  mysqli_query($conecta, $sql);
+            $linha = mysqli_fetch_assoc($result);
+            $produto = new Produto();
+            if($linha){
+                do{
+                    $produto->setIdProduto($linha['id']);
+                    $produto->setNomeProduto($linha['nomeProduto']);
+                    $produto->setVlrCompra($linha['vlrCompra']);
+                    $produto->setVlrVenda($linha['vlrVenda']);
+                    $produto->setQtdEstoque($linha['qtdEstoque']);
+                }while ($linha = mysqli_fetch_assoc($result));
+                {
+                    
+                }
+                mysqli_close($conecta);
+            }
+           
+        } else {
+            echo "<script> alert ('Banco Inoperante')</script>";
+            echo " <Meta HTTP-EQUIV='REFRESH' CONTENT=\"0;
+                URL='../PHPMatutino01/cadastroProduto.php'\">";
+    }
+    return $produto;
+    }
+    
 }
