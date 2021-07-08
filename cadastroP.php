@@ -136,21 +136,25 @@ include_once 'controller/ProdutoController.php';
                             <div class="modal fade" id="exampleModal<?php echo $a; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
+
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="exampleModalLabel">deseja excluir</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            Contexto....<?php echo $lp->getIdProduto(); ?>
+                                            <form method="get" action="excluirProduto.php">
+                                                Contexto....<?php echo $lp->getIdProduto(); ?>
                                         </div>
                                         <div class="modal-footer">
-                                            
 
-                                            <button type="submit" name="botaoConfirma" class="btn btn-primary">Sim</button>
-                                            
+
+                                            <button type="submit"  class="btn btn-primary">Sim</button>
+
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
                                         </div>
+                                        </form>                          
                                     </div>
+
                                 </div>
                             </div>
                             <?php
