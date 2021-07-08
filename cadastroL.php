@@ -76,11 +76,11 @@
                                 <div class="col-md-6 offset-md-3">
                                     <label>Código: </label> <br>
                                     <label>titulo</label>
-                                    <input class="form-control" type="text" name="nomeProduto">
+                                    <input class="form-control" type="text" name="titulo">
                                     <label>autor</label>
-                                    <input class="form-control" type="text" name="vlrCompra">
+                                    <input class="form-control" type="text" name="autor">
                                     <label>editora</label>
-                                    <input class="form-control" type="text" name="vlrVenda">
+                                    <input class="form-control" type="text" name="editora">
                                     <label>Quantidade de Estoque</label>
                                     <input class="form-control" type="number" name="qtdEstoque">
                                     <input type="submit" name="cadastrarLivro" class="btn btn-success btInput" value="Enviar">
