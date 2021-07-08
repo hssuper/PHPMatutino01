@@ -132,19 +132,23 @@ include_once 'controller/ProdutoController.php';
                                         <img src="img/delete.png" width="32"></button></td>
                             </tr>
                     <!-- Modal -->
-                  <div class="modal-header">
-                                        <div id="excluir" class="uk-modal" >
-                                            Contexto....<?php echo $lp->getIdProduto(); ?>
-                                            <div class="uk-modal-dialog">
-                                                <div class="uk-modal-header">Excluir</div>
-                                                Deseja mesmo excluir a tarefa?
-                                                <div class="uk-modal-footer uk-text-right">
-                                                    <a class="uk-button" href="">Não</a>
-                                                    <a class="uk-button uk-button-primary" type="submit" name="botaoConfirma" value="true" href="painel_constru.php?constru=tarefas">Sim</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                    <div class="modal fade" id="exampleModal<?php echo $a;?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">deseja excluir</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Contexto....<?php echo $lp->getIdProduto(); ?>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary">Sim</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                         <?php
                     }
                 }
