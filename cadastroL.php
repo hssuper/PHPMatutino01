@@ -107,10 +107,10 @@
                 </thead>
                 <tbody>
                     <?php
-                    $pcTable = new LivroController();
-                    $listaLivros = $pcTable->listarLivros();
+                    $lcTable = new LivroController();
+                    $listaLivros = $lcTable->listarLivros();
                     $a = 0;
-                    if ($listaLivros != null) {
+                    if ($listaLivrosLivros != null) {
                         foreach ($listaLivros as $l) {
                             $a++;
                             ?>
