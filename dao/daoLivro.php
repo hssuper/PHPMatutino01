@@ -12,7 +12,7 @@ class daoLivro {
             $autor = $livro->getAutor();
             $editora = $livro->getEditora();
             $qtdEstoque = $livro->getQtdEstoque();
-            $sql = "insert into produto values (null, '$$titulo',"
+            $sql = "insert into livro values (null, '$$titulo',"
                     . "'$autor', '$editora', '$qtdEstoque')";
             if (mysqli_query($conn->conectadb(), $sql)) {
                 $msg = "<p style='color: green;'>"
