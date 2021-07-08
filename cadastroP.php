@@ -145,7 +145,8 @@ include_once 'controller/ProdutoController.php';
                                             <form method="get" action="excluirProduto.php">
                                                 <label><strong>Deseja excluir o Produto
                                                    <?php echo $lp->getIdProduto(); ?></strong></label>
-                                                
+                                                <input type="hidden" name="ide"
+                                                       value="<?php echo $lp->getIdProduto(); ?>">
                                         </div>
                                         <div class="modal-footer">
 
