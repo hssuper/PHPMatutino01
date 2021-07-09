@@ -21,23 +21,27 @@ class ProdutoController {
         $daoProduto = new DaoProduto();
         return $daoProduto->listarProdutosDAO();
     }
+    
+    //método para excluir produto
     public function excluirProduto($id){
-        $daoProduto =new DaoProduto();
-        $daoProduto->excluirProduto($id);
-    }
-    //metodo para retornar objeto produto
-    public function pesquisarProdutoId($id){
-        $daoProduto = new daoProduto();
-        return ;
-    }
-
-
-
-
-    //metodo para edtar produto
-    public function editarProduto($id) {
         $daoProduto = new DaoProduto();
-        return $daoProduto->editarProdutoDAO($id);;
-        
+        $daoProduto->excluirProdutoDAO($id);
+    }
+    
+    //método para retornar objeto produto com os dados do BD
+    public function pesquisarProdutoId($id){
+        $daoProduto = new DaoProduto();
+        return $daoProduto->pesquisarProdutoIdDAO($id);
+    }
+    
+    //método para editar produto
+    public function editarProduto($id){
+        $daoProduto = new DaoProduto();
+        return $daoProduto->pesquisarProdutoId($id);
+    }
+    
+    //método para limpar formulário
+    public function limpar(){
+        return $pr = new Produto();
     }
 }
