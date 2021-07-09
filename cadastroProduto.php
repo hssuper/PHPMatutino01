@@ -76,26 +76,31 @@ $pr = new Produto();
                                 echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"2;
                                     URL='cadastroProduto.php'\">";
                             }
-                            //metodo para atualizar os parametos no BD
-                             if (isset($_POST['atualizarProduto'])) {
+                        }
+                        
+                        //método para atualizar dados do produto no BD
+                        if (isset($_POST['atualizarProduto'])) {
                             $nomeProduto = trim($_POST['nomeProduto']);
                             if ($nomeProduto != "") {
+                                $id = $_POST['idproduto'];
                                 $vlrCompra = $_POST['vlrCompra'];
                                 $vlrVenda = $_POST['vlrVenda'];
                                 $qtdEstoque = $_POST['qtdEstoque'];
 
                                 $pc = new ProdutoController();
                                 unset($_POST['atualizarProduto']);
-                                echo $pc->atualizarProduto($id, $nomeProduto, $vlrCompra, $vlrVenda, $qtdEstoque);
+                                echo $pc->atualizarProduto($id, $nomeProduto, 
+                                        $vlrCompra, $vlrVenda, $qtdEstoque);
                                 echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"2;
                                     URL='cadastroProduto.php'\">";
                             }
-                            if (isset($_POST['excluirProduto'])) {
-                                if ($pr != null) {
-                                    $id = $_POST['idproduto'];
-                                    $pc = new ProdutoController();
-                                    echo $pc->excluirProdutoId($id);
-                                }
+                        }
+
+                        if (isset($_POST['excluirProduto'])) {
+                            if ($pr != null) {
+                                $id = $_POST['idproduto'];
+                                $pc = new ProdutoController();
+                                $pc->excluirProduto($id);
                             }
                         }
 
@@ -113,15 +118,17 @@ $pr = new Produto();
                         <form method="post" action="">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <strong>Código: <label style="color:blue;"><?php
+                                    <strong>Código: <label style="color:blue;">
+                                            <?php
                                             if ($pr != null) {
                                                 echo $pr->getIdProduto();
-                                                ?></label></strong>
-                                        <input type="hidden" name="idproduto"
+                                                ?>
+                                            </label></strong>
+                                        <input type="hidden" name="idproduto" 
                                                value="<?php echo $pr->getIdProduto(); ?>"><br>
                                                <?php
                                            }
-                                           ?>
+                                           ?>     
                                     <label>Produto</label>  
                                     <input class="form-control" type="text" 
                                            name="nomeProduto" 
@@ -137,27 +144,41 @@ $pr = new Produto();
                                            value="<?php echo $pr->getQtdEstoque(); ?>" name="qtdEstoque">
                                     <input type="submit" name="cadastrarProduto"
                                            class="btn btn-success btInput" value="Enviar">
-                                    <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                        excluir
+                                    <input type="submit" name="atualizarProduto"
+                                           class="btn btn-light btInput" value="Atualizar">
+                                    <button type="button" class="btn btn-warning btInput" 
+                                            data-bs-toggle="modal" data-bs-target="#ModalExcluir">
+                                        Excluir
                                     </button>
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <!-- Modal para excluir -->
+                                    <div class="modal fade" id="ModalExcluir" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Deseja Excluir</h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    <h5 class="modal-title" 
+                                                        id="exampleModalLabel">
+                                                        Confirmar Exclusão</h5>
+                                                    <button type="button" 
+                                                            class="btn-close" 
+                                                            data-bs-dismiss="modal"
+                                                            aria-label="Close">
+                                                    </button>
                                                 </div>
-                                                
+                                                <div class="modal-body">
+                                                    <h5>Deseja Excluir?</h5>
+                                                </div>
                                                 <div class="modal-footer">
-                                                    <button type="submit" class="btn btn-secondary" 
-                                                          name="excluirProduto"  value="Sim">Sim</button>
-                                                    <button tinput type="submit" 
-                                           class="btn btn-light btInput" name="limpar" value="Limpar">Não</button>
+                                                    <input type="submit" name="excluirProduto"
+                                                           class="btn btn-success "
+                                                           value="Sim">
+                                                    <input type="submit" 
+                                                        class="btn btn-light btInput" 
+                                                        name="limpar" value="Não">
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                    <!-- fim do modal para excluir -->
                                     &nbsp;&nbsp;
                                     <input type="submit" 
                                            class="btn btn-light btInput" name="limpar" value="Limpar">
@@ -196,7 +217,7 @@ $pr = new Produto();
                                             <td><?php print_r($lp->getQtdEstoque()); ?></td>
                                             <td><a href="cadastroProduto.php?id=<?php echo $lp->getIdProduto(); ?>"
                                                    class="btn btn-light">
-                                                    <img src="img/edit.png" width="32"></a>
+                                                    <img src="img/edita.png" width="32"></a>
                                                 </form>
                                                 <button type="button" 
                                                         class="btn btn-light" data-bs-toggle="modal" 
@@ -239,6 +260,8 @@ $pr = new Produto();
             </div>
         </div>     
     </div>
+
+
     <script src="js/bootstrap.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script>
@@ -251,3 +274,4 @@ $pr = new Produto();
     </script> 
 </body>
 </html>
+
