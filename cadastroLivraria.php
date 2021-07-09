@@ -1,7 +1,7 @@
 <?php
-include_once 'controller/ProdutoController.php';
-include_once './model/Produto.php';
-$pr = new Produto();
+include_once 'controller/LivroController.php';
+include_once './model/Livro.php';
+$pl = new Livro();
 ?>
 <!DOCTYPE html>
 <html>
@@ -58,45 +58,45 @@ $pr = new Produto();
             <div class="row" style="margin-top: 30px;">
                 <div class="col-md-4">
                     <div class="card-header bg-dark text-center border
-                         text-white"><strong>Cadastro de Produto</strong>
+                         text-white"><strong>Cadastro de Livro</strong>
                     </div>
                     <div class="card-body border">
                         <?php
                         //envio dos dados para o BD
-                        if (isset($_POST['cadastrarProduto'])) {
-                            $nomeProduto = trim($_POST['nomeProduto']);
-                            if ($nomeProduto != "") {
-                                $vlrCompra = $_POST['vlrCompra'];
-                                $vlrVenda = $_POST['vlrVenda'];
+                        if (isset($_POST['cadastrarLivro'])) {
+                            $titulo = trim($_POST['titulo']);
+                            if ($titulo != "") {
+                                $autor = $_POST['autor'];
+                                $editora = $_POST['editora'];
                                 $qtdEstoque = $_POST['qtdEstoque'];
 
                                 $pc = new ProdutoController();
-                                unset($_POST['cadastrarProduto']);
-                                echo $pc->inserirProduto($nomeProduto, $vlrCompra, $vlrVenda, $qtdEstoque);
+                                unset($_POST['cadastrarLivro']);
+                                echo $pc->inserirProduto($titulo, $autor, $editora, $qtdEstoque);
                                 echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"2;
-                                    URL='cadastroProduto.php'\">";
+                                    URL='cadastroLivro.php'\">";
                             }
                         }
                         if(isset($_POST['limpar'])){
                             $pr = null;
                             unset($_GET['id']);
-                            header("Location: cadastroProduto.php");
+                            header("Location: cadastrolivro.php");
                         }
                         if (isset($_GET['id'])) {
                             $id = $_GET['id'];
-                            $pc = new ProdutoController();
-                            $pr = $pc->pesquisarProdutoId($id);
+                            $pc = new LivroController();
+                            $pr = $pc->pesquisarLivroId($id);
                         }
                         ?>
                         <form method="post" action="">
                             <div class="row">
                                 <div class="col-md-12">
                                     <strong>Código: <label style="color:blue;"><?php 
-                                        echo $pr->getIdProduto();?></label></strong><br> 
+                                        echo $pr->getIdLivro();?></label></strong><br> 
                                     <label>Produto</label>  
                                     <input class="form-control" type="text" 
                                            name="nomeProduto" 
-                                           value="<?php echo $pr->getNomeProduto();?>">
+                                           value="<?php echo $pr->getTitulo();?>">
                                     <label>Valor de Compra</label>  
                                     <input class="form-control" type="text" 
                                            value="<?php echo $pr->getVlrCompra();?>" name="vlrCompra">  
