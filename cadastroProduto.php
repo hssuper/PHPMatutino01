@@ -217,7 +217,7 @@ $pr = new Produto();
                                             <td><?php print_r($lp->getQtdEstoque()); ?></td>
                                             <td><a href="cadastroProduto.php?id=<?php echo $lp->getIdProduto(); ?>"
                                                    class="btn btn-light">
-                                                    <img src="img/edita.png" width="32"></a>
+                                                    <img src="img/edit.png" width="32"></a>
                                                 </form>
                                                 <button type="button" 
                                                         class="btn btn-light" data-bs-toggle="modal" 
