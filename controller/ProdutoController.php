@@ -16,6 +16,20 @@ class ProdutoController {
         return $daoProduto->inserir($produto);
     }
     
+    //método para atualizar dados de produto no BD
+    public function atualizarProduto($id, $nomeProduto, $vlrCompra, 
+            $vlrVenda, $qtdEstoque){
+        $produto = new Produto();
+        $produto->setIdProduto($id);
+        $produto->setNomeProduto($nomeProduto);
+        $produto->setVlrCompra($vlrCompra);
+        $produto->setVlrVenda($vlrVenda);
+        $produto->setQtdEstoque($qtdEstoque);
+        
+        $daoProduto = new DaoProduto();
+        return $daoProduto->atualizarProdutoDAO($produto);
+    }
+    
     //método para carregar a lista de produtos que vem da DAO
     public function listarProdutos(){
         $daoProduto = new DaoProduto();
@@ -37,7 +51,7 @@ class ProdutoController {
     //método para editar produto
     public function editarProduto($id){
         $daoProduto = new DaoProduto();
-        return $daoProduto->pesquisarProdutoId($id);
+        return $daoProduto->editarProdutoDAO($id);
     }
     
     //método para limpar formulário

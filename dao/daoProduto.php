@@ -29,6 +29,34 @@ class DaoProduto {
         return $msg;
     }
     
+    //método para atualizar dados da tabela produto
+    public function atualizarProdutoDAO(Produto $produto){
+        $conn = new Conecta();
+        if($conn->conectadb()){
+            $id = $produto->getIdProduto();
+            $nomeProduto = $produto->getNomeProduto();
+            $vlrCompra = $produto->getVlrCompra();
+            $vlrVenda = $produto->getVlrVenda();
+            $qtdEstoque = $produto->getQtdEstoque();
+            $sql = "update produto set nome = '$nomeProduto',"
+                    . "vlrCompra = '$vlrCompra', vlrVenda = '$vlrVenda', "
+                    . "qtdEstoque = '$qtdEstoque' where id = '$id'";
+            $resp = mysqli_query($conn->conectadb(), $sql) or 
+                    die($conn->conectadb());
+            if($resp){
+                $msg = "<p style='color: blue;'>"
+                        . "Dados atualizados com sucesso</p>";
+            }else{
+                $msg = $resp;
+            }
+        }else{
+            $msg = "<p style='color: red;'>"
+                        . "Erro na conexão com o banco de dados.</p>";
+        }
+        mysqli_close($conn->conectadb());
+        return $msg;
+    }
+    
     //método para carregar lista de produtos do banco de dados
     public function listarProdutosDAO(){
         $conn = new Conecta();
@@ -62,7 +90,7 @@ class DaoProduto {
         if($conecta){
             $sql = "delete from produto where id = '$id'";
             mysqli_query($conecta, $sql);
-            header("Location: ../cadastroProduto.php");
+            header("Location: cadastroProduto.php");
             mysqli_close($conecta);
             exit;
         }else{

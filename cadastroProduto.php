@@ -76,13 +76,26 @@ $pr = new Produto();
                                 echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"2;
                                     URL='cadastroProduto.php'\">";
                             }
+                            //metodo para atualizar os parametos no BD
+                             if (isset($_POST['atualizarProduto'])) {
+                            $nomeProduto = trim($_POST['nomeProduto']);
+                            if ($nomeProduto != "") {
+                                $vlrCompra = $_POST['vlrCompra'];
+                                $vlrVenda = $_POST['vlrVenda'];
+                                $qtdEstoque = $_POST['qtdEstoque'];
+
+                                $pc = new ProdutoController();
+                                unset($_POST['atualizarProduto']);
+                                echo $pc->atualizarProduto($id, $nomeProduto, $vlrCompra, $vlrVenda, $qtdEstoque);
+                                echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"2;
+                                    URL='cadastroProduto.php'\">";
+                            }
                             if (isset($_POST['excluirProduto'])) {
                                 if ($pr != null) {
                                     $id = $_POST['idproduto'];
                                     $pc = new ProdutoController();
                                     echo $pc->excluirProdutoId($id);
                                 }
-                                
                             }
                         }
 
@@ -101,14 +114,14 @@ $pr = new Produto();
                             <div class="row">
                                 <div class="col-md-12">
                                     <strong>Código: <label style="color:blue;"><?php
-                        if ($pr != null) {
-                            echo $pr->getIdProduto();
-                            ?></label></strong>
+                                            if ($pr != null) {
+                                                echo $pr->getIdProduto();
+                                                ?></label></strong>
                                         <input type="hidden" name="idproduto"
                                                value="<?php echo $pr->getIdProduto(); ?>"><br>
-                                                <?php
-                                            }
-                                            ?>
+                                               <?php
+                                           }
+                                           ?>
                                     <label>Produto</label>  
                                     <input class="form-control" type="text" 
                                            name="nomeProduto" 
@@ -124,8 +137,27 @@ $pr = new Produto();
                                            value="<?php echo $pr->getQtdEstoque(); ?>" name="qtdEstoque">
                                     <input type="submit" name="cadastrarProduto"
                                            class="btn btn-success btInput" value="Enviar">
-                                    <input type="submit" name="excluirProduto"
-                                           class="btn btn-success btInput" value="Excluir">
+                                    <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                        excluir
+                                    </button>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Deseja Excluir</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                
+                                                <div class="modal-footer">
+                                                    <button type="submit" class="btn btn-secondary" 
+                                                          name="excluirProduto"  value="Sim">Sim</button>
+                                                    <button tinput type="submit" 
+                                           class="btn btn-light btInput" name="limpar" value="Limpar">Não</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                     &nbsp;&nbsp;
                                     <input type="submit" 
                                            class="btn btn-light btInput" name="limpar" value="Limpar">
@@ -148,14 +180,14 @@ $pr = new Produto();
                                     <th>Ações</th></tr>
                             </thead>
                             <tbody>
-<?php
-$pcTable = new ProdutoController();
-$listaProdutos = $pcTable->listarProdutos();
-$a = 0;
-if ($listaProdutos != null) {
-    foreach ($listaProdutos as $lp) {
-        $a++;
-        ?>
+                                <?php
+                                $pcTable = new ProdutoController();
+                                $listaProdutos = $pcTable->listarProdutos();
+                                $a = 0;
+                                if ($listaProdutos != null) {
+                                    foreach ($listaProdutos as $lp) {
+                                        $a++;
+                                        ?>
                                         <tr>
                                             <td><?php print_r($lp->getIdProduto()); ?></td>
                                             <td><?php print_r($lp->getNomeProduto()); ?></td>
@@ -183,7 +215,7 @@ if ($listaProdutos != null) {
                                                 <div class="modal-body">
                                                     <form method="get" action="controller/excluiProduto.php">
                                                         <label><strong>Deseja excluir o produto 
-        <?php echo $lp->getNomeProduto(); ?>?</strong></label>
+                                                                <?php echo $lp->getNomeProduto(); ?>?</strong></label>
                                                         <input type="hidden" name="ide" 
                                                                value="<?php echo $lp->getIdProduto(); ?>">
                                                         </div>
@@ -196,10 +228,10 @@ if ($listaProdutos != null) {
                                                 </div>
                                             </div>
                                         </div>
-        <?php
-    }
-}
-?>
+                                        <?php
+                                    }
+                                }
+                                ?>
                                 </tbody>
                         </table>
                     </div>
@@ -219,4 +251,3 @@ if ($listaProdutos != null) {
     </script> 
 </body>
 </html>
-
