@@ -174,7 +174,7 @@ $fr = new fornecedor();
                                            value="<?php echo $fr->getUf(); ?>" name="uf">
 
                                     <label>Cep</label>  
-                                    <input class="form-control" type="number" 
+                                    <input class="form-control" type="text" 
                                            value="<?php echo $fr->getCep(); ?>" name="cep">
 
                                     <label>Representante</label>  
@@ -182,7 +182,7 @@ $fr = new fornecedor();
                                            value="<?php echo $fr->getRepresentante(); ?>" name="representante">
 
                                     <label>Email</label>  
-                                    <input class="form-control" type="text" 
+                                    <input class="form-control" type="email" 
                                            value="<?php echo $fr->getEmail(); ?>" name="email">
                                     <label>TelFixo</label>  
                                     <input class="form-control" type="number" 
@@ -272,17 +272,17 @@ $fr = new fornecedor();
                                         <tr>
                                             <td><?php print_r($lf->getIdFornecedor()); ?></td>
                                             <td><?php print_r($lf->getNomeFornecedor()); ?></td>
-                                            <td><?php print_r($lf->Logradouro()); ?></td>
-                                            <td><?php print_r($lf->Numero()); ?></td>
-                                            <td><?php print_r($lf->Bairro()); ?></td>
-                                            <td><?php print_r($lf->Cidade()); ?></td>
-                                            <td><?php print_r($lf->Uf()); ?></td>
-                                            <td><?php print_r($lf->Cep()); ?></td>
-                                            <td><?php print_r($lf->Representante()); ?></td>
-                                            <td><?php print_r($lf->Email()); ?></td>
-                                            <td><?php print_r($lf->TelFixo()); ?></td>
-                                            <td><?php print_r($lf->TelCel()); ?></td>
-                                            <td><?php print_r($lf->Complemento()); ?></td>
+                                            <td><?php print_r($lf->getLogradouro()); ?></td>
+                                            <td><?php print_r($lf->getNumero()); ?></td>
+                                            <td><?php print_r($lf->getBairro()); ?></td>
+                                            <td><?php print_r($lf->getCidade()); ?></td>
+                                            <td><?php print_r($lf->getUf()); ?></td>
+                                            <td><?php print_r($lf->getCep()); ?></td>
+                                            <td><?php print_r($lf->getRepresentante()); ?></td>
+                                            <td><?php print_r($lf->getEmail()); ?></td>
+                                            <td><?php print_r($lf->getTelFixo()); ?></td>
+                                            <td><?php print_r($lf->getTelCel()); ?></td>
+                                            <td><?php print_r($lf->getComplemento()); ?></td>
                                             <td><a href="cadastroFornecedor.php?id=<?php echo $lf->getIdFornecedor(); ?>"
                                                    class="btn btn-light">
                                                     <img src="img/edit.png" width="32"></a>

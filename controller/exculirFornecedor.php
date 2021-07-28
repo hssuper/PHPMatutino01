@@ -1,6 +1,6 @@
 <?php
-include_once 'ProdutoController.php';
+include_once './FornecedorController.phpller.php';
 $id = $_REQUEST['ide'];
-$pc = new ProdutoController();
-$pc->excluirProduto($id);
+$fc = new FornecedorController();
+$fc->excluirFornecedor($idFornecedor);
 

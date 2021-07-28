@@ -27,7 +27,7 @@ class daoFornecedor {
             $sql = "insert into fornecedor values(null, '$nomeFornecedor',"
                     . "'$logradouro','$numero','$bairro','$cidade','$uf','$cep','$representante','$email','$telFixo','$telCel','$complemento')";
             $resp = mysqli_query($conn->conectadb(), $sql) or 
-            die($conn->conectadb());
+                    die($conn->conectadb());
             if ($resp) {
                 $msg = "<p style='color: green;'>"
                         . "Dados Cadastrados com sucesso</p>";
@@ -88,7 +88,7 @@ class daoFornecedor {
             $a = 0;
             if ($result) {
                 do {
-                    $fornecedor = new Livro();
+                    $fornecedor = new Fornecedor();
                     $fornecedor->setIdFornecedor($result['idFornecedor']);
                     $fornecedor->setNomeFornecedor($result['nomeFornecedor']);
                     $fornecedor->setLogradouro($result['logradouro']);
