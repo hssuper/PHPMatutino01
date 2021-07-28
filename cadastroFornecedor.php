@@ -1,8 +1,7 @@
 <?php
-include_once 'controller/ProdutoController.php';
-include_once './model/Produto.php';
-$pr = new Produto();
-
+include_once 'C:/xampp/htdocs/PHPMatutino01/controller/FornecedorController.php';
+include_once 'C:/xampp/htdocs/PHPMatutino01/model/fornecedor.php';
+$fr = new fornecedor();
 ?>
 <!DOCTYPE html>
 <html>
@@ -59,62 +58,77 @@ $pr = new Produto();
             <div class="row" style="margin-top: 30px;">
                 <div class="col-md-4">
                     <div class="card-header bg-dark text-center border
-                         text-white"><strong>Cadastro de Produto</strong>
+                         text-white"><strong>Cadastro de Fornecedor</strong>
                     </div>
                     <div class="card-body border">
                         <?php
                         //envio dos dados para o BD
-                        if (isset($_POST['cadastrarProduto'])) {
-                            $nomeProduto = trim($_POST['nomeProduto']);
-                            if ($nomeProduto != "") {
-                                $vlrCompra = $_POST['vlrCompra'];
-                                $vlrVenda = $_POST['vlrVenda'];
-                                $qtdEstoque = $_POST['qtdEstoque'];
-                                $fkFornecedor = $_POST['fkFornecedor'];
+                        if (isset($_POST['cadastrarFornecedor'])) {
+                            $nomeFornecedor = trim($_POST['nomeFornecedor']);
+                            if ($nomeFornecedor != "") {
+                                $logradouro = $_POST['logradouro'];
+                                $numero = $_POST['numero'];
+                                $bairro = $_POST['bairro'];
+                                $cidade = $_POST['cidade'];
+                                $uf = $_POST['uf'];
+                                $cep = $_POST['cep'];
+                                $representante = $_POST['representante'];
+                                $email = $_POST['email'];
+                                $telFixo = $_POST['telFixo'];
+                                $telCel = $_POST['telCel'];
+                                $complemento = $_POST['complemento'];
 
-                                $pc = new ProdutoController();
-                                unset($_POST['cadastrarProduto']);
-                                echo $pc->inserirProduto($nomeProduto, $vlrCompra, $vlrVenda, $qtdEstoque);
+
+                                $fc = new FornecedorController();
+                                unset($_POST['cadastrarFornecedor']);
+                                echo $fc->inserirFornecedor($nomeFornecedor, $logradouro, $numero, $bairro, $cidade, $uf, $cep, $representante, $email, $telFixo, $telCel, $complemento);
                                 echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"2;
-                                    URL='cadastroProduto.php'\">";
+                                    URL='cadastroFornecedor.php'\">";
                             }
                         }
-                        
+
                         //método para atualizar dados do produto no BD
-                        if (isset($_POST['atualizarProduto'])) {
-                            $nomeProduto = trim($_POST['nomeProduto']);
-                            if ($nomeProduto != "") {
-                                $id = $_POST['idproduto'];
-                                $vlrCompra = $_POST['vlrCompra'];
-                                $vlrVenda = $_POST['vlrVenda'];
-                                $qtdEstoque = $_POST['qtdEstoque'];
+                        if (isset($_POST['atualizarFornecedor'])) {
+                            $nomeFornecedor = trim($_POST['nomeFornecedor']);
+                            if ($nomeFornecedor != "") {
+                                $idfornecedor = $_POST['idFornecedor'];
+                                $logradouro = $_POST['logradouro'];
+                                $numero = $_POST['numero'];
+                                $bairro = $_POST['bairro'];
+                                $cidade = $_POST['cidade'];
+                                $uf = $_POST['uf'];
+                                $cep = $_POST['cep'];
+                                $representante = $_POST['representante'];
+                                $email = $_POST['email'];
+                                $telFixo = $_POST['telFixo'];
+                                $telCel = $_POST['telCel'];
+                                $complemento = $_POST['complemento'];
 
-                                $pc = new ProdutoController();
-                                unset($_POST['atualizarProduto']);
-                                echo $pc->atualizarProduto($id, $nomeProduto, 
-                                        $vlrCompra, $vlrVenda, $qtdEstoque);
+                                $fc = new FornecedorController();
+                                unset($_POST['atualizarFornecedor']);
+                                echo $fc->atualizarFornecedor($idFornecedor, $nomeFornecedor, $logradouro, $numero, $bairro, $cidade, $uf, $cep, $representante, $email, $telFixo, $telCel, $complemento);
                                 echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"2;
-                                    URL='cadastroProduto.php'\">";
+                                    URL='cadastroFornecedor.php'\">";
                             }
                         }
 
-                        if (isset($_POST['excluirProduto'])) {
-                            if ($pr != null) {
-                                $id = $_POST['idproduto'];
-                                $pc = new ProdutoController();
-                                $pc->excluirProduto($id);
+                        if (isset($_POST['excluirFornecedor'])) {
+                            if ($fr != null) {
+                                $idFornecedor = $_POST['idFornecedor'];
+                                $fc = new FornecedorController();
+                                $fc->excluirFornecedor($idFornecedor);
                             }
                         }
 
                         if (isset($_POST['limpar'])) {
-                            $pr = null;
-                            unset($_GET['id']);
-                            header("Location: cadastroProduto.php");
+                            $fr = null;
+                            unset($_GET['idFornecedor']);
+                            header("Location: cadastroFornecedor.php");
                         }
-                        if (isset($_GET['id'])) {
-                            $id = $_GET['id'];
-                            $pc = new ProdutoController();
-                            $pr = $pc->pesquisarProdutoId($id);
+                        if (isset($_GET['idFornecedor'])) {
+                            $idFornecedor = $_GET['idFornecedor'];
+                            $fc = new FornecedorController();
+                            $fr = $fc->pesquisarFornecedorId($idFornecedor);
                         }
                         ?>
                         <form method="post" action="">
@@ -122,31 +136,67 @@ $pr = new Produto();
                                 <div class="col-md-12">
                                     <strong>Código: <label style="color:blue;">
                                             <?php
-                                            if ($pr != null) {
-                                                echo $pr->getIdProduto();
+                                            if ($fr != null) {
+
+                                                echo
+                                                $fr->getIdFornecedor();
                                                 ?>
                                             </label></strong>
-                                        <input type="hidden" name="idproduto" 
-                                               value="<?php echo $pr->getIdProduto(); ?>"><br>
+                                        <input type="hidden" name="idFornecedor" 
+                                               value="<?php echo $fr->getIdFornecedor(); ?>"><br>
                                                <?php
                                            }
-                                           ?>     
-                                    <label>Produto</label>  
+                                           ?>   
+
+                                    <label>Nome Fornecedor</label>  
                                     <input class="form-control" type="text" 
-                                           name="nomeProduto" 
-                                           value="<?php echo $pr->getNomeProduto(); ?>">
-                                    <label>Valor de Compra</label>  
+                                           name="nomeFornecedor" 
+                                           value="<?php echo $fr->getNomeFornecedor(); ?>">
+
+                                    <label>Logradouro</label>  
                                     <input class="form-control" type="text" 
-                                           value="<?php echo $pr->getVlrCompra(); ?>" name="vlrCompra">  
-                                    <label>Valor de Venda</label>  
-                                    <input class="form-control" type="text" 
-                                           value="<?php echo $pr->getVlrVenda(); ?>" name="vlrVenda"> 
-                                    <label>Qtde em Estoque</label>  
+                                           value="<?php echo $fr->getLogradouro(); ?>" name="logradouro">
+
+                                    <label>Numero</label>  
                                     <input class="form-control" type="number" 
-                                           value="<?php echo $pr->getQtdEstoque(); ?>" name="qtdEstoque">
-                                    <input type="submit" name="cadastrarProduto"
+                                           value="<?php echo $fr->getNumero(); ?>" name="numero"> 
+
+                                    <label>Bairro</label>  
+                                    <input class="form-control" type="text" 
+                                           value="<?php echo $fr->getBairro(); ?>" name="bairro">
+
+                                    <label>Cidade</label>  
+                                    <input class="form-control" type="text" 
+                                           value="<?php echo $fr->getCidade(); ?>" name="cidade">
+
+                                    <label>Uf</label>  
+                                    <input class="form-control" type="text" 
+                                           value="<?php echo $fr->getUf(); ?>" name="uf">
+
+                                    <label>Cep</label>  
+                                    <input class="form-control" type="text" 
+                                           value="<?php echo $fr->getCep(); ?>" name="cep">
+
+                                    <label>Representante</label>  
+                                    <input class="form-control" type="text" 
+                                           value="<?php echo $fr->getRepresentante(); ?>" name="representante">
+
+                                    <label>Email</label>  
+                                    <input class="form-control" type="text" 
+                                           value="<?php echo $fr->getEmail(); ?>" name="email">
+                                    <label>TelFixo</label>  
+                                    <input class="form-control" type="number" 
+                                           value="<?php echo $fr->getTelFixo(); ?>" name="telFixo">
+                                    <label>TelCel</label>  
+                                    <input class="form-control" type="number" 
+                                           value="<?php echo $fr->getTelCel(); ?>" name="telCel">
+                                    <label>Complemento</label>  
+                                    <input class="form-control" type="text" 
+                                           value="<?php echo $fr->getComplemento(); ?>" name="complemento">
+
+                                    <input type="submit" name="cadastrarFornecedor"
                                            class="btn btn-success btInput" value="Enviar">
-                                    <input type="submit" name="atualizarProduto"
+                                    <input type="submit" name="atualizarFornecedor"
                                            class="btn btn-light btInput" value="Atualizar">
                                     <button type="button" class="btn btn-warning btInput" 
                                             data-bs-toggle="modal" data-bs-target="#ModalExcluir">
@@ -170,12 +220,12 @@ $pr = new Produto();
                                                     <h5>Deseja Excluir?</h5>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <input type="submit" name="excluirProduto"
+                                                    <input type="submit" name="excluirFornecedor"
                                                            class="btn btn-success "
                                                            value="Sim">
                                                     <input type="submit" 
-                                                        class="btn btn-light btInput" 
-                                                        name="limpar" value="Não">
+                                                           class="btn btn-light btInput" 
+                                                           name="limpar" value="Não">
                                                 </div>
                                             </div>
                                         </div>
@@ -196,28 +246,44 @@ $pr = new Produto();
                                style="border-radius: 3px; overflow:hidden;">
                             <thead class="table-dark">
                                 <tr><th>Código</th>
-                                    <th>Nome</th>
-                                    <th>Compra (R$)</th>
-                                    <th>Venda (R$)</th>
-                                    <th>Estoque</th>
+                                    <th>Nome Fornecedor</th>
+                                    <th>Logradouro</th>
+                                    <th>Numero</th>
+                                    <th>Bairro</th>
+                                    <th>Cidade</th>
+                                    <th>Uf</th>
+                                    <th>Cep</th>
+                                    <th>Representante</th>
+                                    <th>Email</th>
+                                    <th>TelFixo</th>
+                                    <th>TelCel</th>
+                                    <th>Complemento</th>
                                     <th>Ações</th></tr>
                             </thead>
                             <tbody>
                                 <?php
-                                $pcTable = new ProdutoController();
-                                $listaProdutos = $pcTable->listarProdutos();
+                                $fTable = new FornecedorController();
+                                $listaFornecedor = $fTable->listarFornecedor();
                                 $a = 0;
-                                if ($listaProdutos != null) {
-                                    foreach ($listaProdutos as $lp) {
+                                if ($listaFornecedor != null) {
+                                    foreach ($listaFornecedor as $lf) {
                                         $a++;
                                         ?>
                                         <tr>
-                                            <td><?php print_r($lp->getIdProduto()); ?></td>
-                                            <td><?php print_r($lp->getNomeProduto()); ?></td>
-                                            <td><?php print_r($lp->getVlrCompra()); ?></td>
-                                            <td><?php print_r($lp->getVlrVenda()); ?></td>
-                                            <td><?php print_r($lp->getQtdEstoque()); ?></td>
-                                            <td><a href="cadastroProduto.php?id=<?php echo $lp->getIdProduto(); ?>"
+                                            <td><?php print_r($lf->getIdFornecedor()); ?></td>
+                                            <td><?php print_r($lf->getNomeFornecedor()); ?></td>
+                                            <td><?php print_r($lf->Logradouro()); ?></td>
+                                            <td><?php print_r($lf->Numero()); ?></td>
+                                            <td><?php print_r($lf->Bairro()); ?></td>
+                                            <td><?php print_r($lf->Cidade()); ?></td>
+                                            <td><?php print_r($lf->Uf()); ?></td>
+                                            <td><?php print_r($lf->Cep()); ?></td>
+                                            <td><?php print_r($lf->Representante()); ?></td>
+                                            <td><?php print_r($lf->Email()); ?></td>
+                                            <td><?php print_r($lf->TelFixo()); ?></td>
+                                            <td><?php print_r($lf->TelCel()); ?></td>
+                                            <td><?php print_r($lf->Complemento()); ?></td>
+                                            <td><a href="cadastroFornecedor.php?id=<?php echo $lf->getIdFornecedor(); ?>"
                                                    class="btn btn-light">
                                                     <img src="img/edit.png" width="32"></a>
                                                 </form>
@@ -236,11 +302,11 @@ $pr = new Produto();
                                                             data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <form method="get" action="controller/excluiProduto.php">
-                                                        <label><strong>Deseja excluir o produto 
-                                                                <?php echo $lp->getNomeProduto(); ?>?</strong></label>
-                                                        <input type="hidden" name="ide" 
-                                                               value="<?php echo $lp->getIdProduto(); ?>">
+                                                    <form method="get" action="controller/excluiFornecedor.php">
+                                                        <label><strong>Deseja excluir o Fornecedor 
+                                                                <?php echo $f->getNomeFornecedor(); ?>?</strong></label>
+                                                        <input type="hidden" name="idFornecedor" 
+                                                               value="<?php echo $f->getIdFornecedor(); ?>">
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="submit" class="btn btn-primary">Sim</button>
@@ -276,4 +342,8 @@ $pr = new Produto();
     </script> 
 </body>
 </html>
+
+
+
+
 
