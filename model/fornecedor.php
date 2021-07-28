@@ -15,7 +15,8 @@ class fornecedor {
     private $telFixo;
     private $telCel;
     private $complemento;
-}
+    
+
 
 function getIdFornecedor() {
     return $this->idFornecedor;
@@ -120,4 +121,4 @@ function getIdFornecedor() {
  function setComplemento($complemento) {
     $this->complemento = $complemento;
 }
-
+}

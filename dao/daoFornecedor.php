@@ -2,13 +2,15 @@
 
 require_once 'C:/xampp/htdocs/PHPMatutino01/bd/Conecta.php';
 require_once 'C:/xampp/htdocs/PHPMatutino01/model/fornecedor.php';
+
 class daoFornecedor {
-     public $conn;
-    
+
+    public $conn;
+
     function inserir(fornecedor $fornecedor) {
         $conn = new Conecta();
         if ($conn->conectadb()) {
-            $idFornecedor = $fornecedor->getIdFornecedor();
+            
             $nomeFornecedor = $fornecedor->getNomeFornecedor();
             $logradouro = $fornecedor->getLogradouro();
             $numero = $fornecedor->getNumero();
@@ -24,8 +26,8 @@ class daoFornecedor {
 
             $sql = "insert into fornecedor values(null, '$nomeFornecedor',"
                     . "'$logradouro','$numero','$bairro','$cidade','$uf','$cep','$representante','$email','$telFixo','$telCel','$complemento')";
-            $resp = mysqli_query($conn->conectadb(), $sql) or
-                    die($conn->conectadb());
+            $resp = mysqli_query($conn->conectadb(), $sql) or 
+            die($conn->conectadb());
             if ($resp) {
                 $msg = "<p style='color: green;'>"
                         . "Dados Cadastrados com sucesso</p>";
@@ -75,9 +77,10 @@ class daoFornecedor {
         mysqli_close($conn->conectadb());
         return $msg;
     }
-public function listarFornecedorDAO(){
-    $conn = new Conecta();
-        if($conn->conectadb()){
+
+    public function listarFornecedorDAO() {
+        $conn = new Conecta();
+        if ($conn->conectadb()) {
             $sql = "select * from fornecedor";
             $query = mysqli_query($conn->conectadb(), $sql);
             $result = mysqli_fetch_array($query);
@@ -99,7 +102,7 @@ public function listarFornecedorDAO(){
                     $fornecedor->setTelFixo($result['telFixo']);
                     $fornecedor->setTelCel($result['telCel']);
                     $fornecedor->setComplemento($result['Complemento']);
-                    
+
                     $lista[$a] = $fornecedor;
                     $a++;
                 } while ($result = mysqli_fetch_array($query));
@@ -107,27 +110,29 @@ public function listarFornecedorDAO(){
             mysqli_close($conn->conectadb());
             return $lista;
         }
-}
-public function excluirFornecedorDAO(){
-    $conn = new Conecta();
+    }
+
+    public function excluirFornecedorDAO() {
+        $conn = new Conecta();
         $conecta = $conn->conectadb();
-        if($conecta){
+        if ($conecta) {
             $sql = "delete from fornecedor where idFornecedor = '$idFornecedor'";
             mysqli_query($conecta, $sql);
             header("Location: cadastroFornecedor.php");
             mysqli_close($conecta);
             exit;
-        }else{
+        } else {
             echo "<script>alert('Banco inoperante!')</script>";
             echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"0;
-			 URL='../cadastroProduto.php'\">"; 
+			 URL='../cadastroProduto.php'\">";
         }
-}
-public function pesquisarFornecedorIdDAO($id){
-    $conn = new Conecta();
+    }
+
+    public function pesquisarFornecedorIdDAO($id) {
+        $conn = new Conecta();
         $conecta = $conn->conectadb();
         $fornecedor = new Livro();
-        if($conecta){
+        if ($conecta) {
             $sql = "select * from fornecedor where idFornecedor = '$idFornecedor'";
             $result = mysqli_query($conecta, $sql);
             $linha = mysqli_fetch_assoc($result);
@@ -149,11 +154,12 @@ public function pesquisarFornecedorIdDAO($id){
                 } while ($linha = mysqli_fetch_assoc($result));
             }
             mysqli_close($conecta);
-        }else{
+        } else {
             echo "<script>alert('Banco inoperante!')</script>";
             echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"0;
-			 URL='../PHPMatutino01/cadastroProduto.php'\">"; 
+			 URL='../PHPMatutino01/cadastroProduto.php'\">";
         }
         return $fornecedor;
     }
+
 }

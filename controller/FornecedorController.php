@@ -19,8 +19,8 @@ class FornecedorController {
         $fornecedor->setTelCel($telCel);
         $fornecedor->setComplemento($complemento);
         
-        $daoFonecedor = new daoFornecedor();
-        return $daofonecedor->inserir($fornecedor);
+        $daoFornecedor = new daoFornecedor();
+        return $daoFornecedor->inserir($fornecedor);
     }
     
     //método para atualizar dados de produto no BD

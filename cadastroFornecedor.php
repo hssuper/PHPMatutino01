@@ -174,7 +174,7 @@ $fr = new fornecedor();
                                            value="<?php echo $fr->getUf(); ?>" name="uf">
 
                                     <label>Cep</label>  
-                                    <input class="form-control" type="text" 
+                                    <input class="form-control" type="number" 
                                            value="<?php echo $fr->getCep(); ?>" name="cep">
 
                                     <label>Representante</label>  
