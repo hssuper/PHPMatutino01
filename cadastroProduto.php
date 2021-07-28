@@ -70,7 +70,7 @@ $pr = new Produto();
                                 $vlrCompra = $_POST['vlrCompra'];
                                 $vlrVenda = $_POST['vlrVenda'];
                                 $qtdEstoque = $_POST['qtdEstoque'];
-                                $fkFornecedor = $_POST['fkFornecedor'];
+                                
 
                                 $pc = new ProdutoController();
                                 unset($_POST['cadastrarProduto']);
