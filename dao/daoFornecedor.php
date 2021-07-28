@@ -8,6 +8,7 @@ class daoFornecedor {
     function inserir(fornecedor $fornecedor) {
         $conn = new Conecta();
         if ($conn->conectadb()) {
+            $idFornecedor = $fornecedor->getIdFornecedor();
             $nomeFornecedor = $fornecedor->getNomeFornecedor();
             $logradouro = $fornecedor->getLogradouro();
             $numero = $fornecedor->getNumero();
